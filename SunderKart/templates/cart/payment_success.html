@@ -1,0 +1,14 @@
+{% extends 'home/blank_layout.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="image-container">
+        <img src="{% static 'images/order_successful.png' %}" alt="order successful" class="responsive-image">
+        <div class="button-container">
+            <a href="{% url 'view_orders' %}">
+                <button class="button">View Orders</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

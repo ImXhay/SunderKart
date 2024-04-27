@@ -1,0 +1,14 @@
+{% extends 'home/blank_layout.html' %}
+
+{% block content %}
+
+{% if messages %}
+    <div class="message">
+        {% for message in messages %}
+            <div class="{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% else %}
+        {% include 'orders/order_container.html' %}
+
+{% endif %}
+{% endblock content %}

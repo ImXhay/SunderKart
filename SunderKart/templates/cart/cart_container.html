@@ -1,0 +1,58 @@
+{% load static %}
+{% load multiply %}
+{% load gettotal %}
+
+
+<div class="small-container cart-page">
+    {% if cart and cart.added_items.all %}
+    <table>
+        <tbody><tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        {% for cart_item in cart.added_items.all %}
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{{ cart_item.product.images.url }}">
+                    <div>
+                        <p>{{ cart_item.product.title }}</p>
+                        <small>Price: &#8377;{{ cart_item.product.price }}</small>
+                        <br>
+                        <a href="{% url 'remove' cart_item.id %}">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" disabled value="{{ cart_item.quantity }}"></td>
+            <td>&#8377;{% gettotal cart %}</td>
+        </tr>
+        {% endfor %}
+    </tbody></table>
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Total</td>
+                <td>&#8377;{% gettotal cart %}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    
+                </td>
+                <td>
+                    <form method="post" action="{% url 'checkout' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="total" value="{% gettotal cart %}" />
+                        <button  class="btn" type="submit">PAY NOW</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody></table>
+        
+    </div>
+    {% else %}
+        <div class="row text-center">
+            <img  src="{% static 'images/cart_empty.png' %}" alt="cart is empty">
+        </div>
+    {% endif %}
+</div>

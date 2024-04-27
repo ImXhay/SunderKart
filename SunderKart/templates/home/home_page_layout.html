@@ -1,0 +1,48 @@
+{% load static %}
+
+ <!--sliding banner-->
+
+
+ <!-- Featured Products -->
+
+<div class="small-container">
+    <h2 class="title">Featured Products</h2>
+        <div class="row">
+    
+    {% for product in feature_products %}
+        <div class="col-4">
+            <a href="{% url 'detail_product' product.id %}"><img src="{{ product.images.url }}"></a>
+            <h4>{{ product.title }}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>&#8377;{{ product.price }}</p>
+        </div>
+    {% endfor %}
+
+    
+
+<!--latest products-->
+    </div>
+    <h2 class="title">Latest Products</h2>
+        <div class="row">
+    {% for product in latest_product %}
+        <div class="col-4">
+            <a href="{% url 'detail_product' product.id %}"><img src="{{ product.images.url }}"></a>
+            <h4>{{ product.title }}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>&#8377;{{ product.price }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,52 @@
+{% load static %}         
+
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/image1.png' %}" width="100%">
+            </div>
+            <div class="col-2">
+                <div class="form-container">
+                    
+                    <div class="form-btn">
+                        <span onclick="login()">Login</span>
+                        <span onclick="register()">Register</span>                       
+                        <hr id="Indicator">
+                    </div>
+                    <!--messages-->
+                    <div>
+                        {% if messages %}
+                        <div class="message">
+                            {% for message in messages %}
+                                <div class="{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <form id="RegForm" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <input type="text" name="username" required minlength="3" maxlength="10" placeholder="Username">
+                        <input type="email" name="email" required placeholder="Email">
+                        <input type="password" name="password" required minlength="3" maxlength="6" placeholder="Password">
+                        <input type="text" name="address" required minlength="5" maxlength="10" placeholder="address">
+                        <input type="text" name="phone" required minlength="10" maxlength="10" placeholder="phone">
+                        <button type="submit" name="register" class="btn">Register</button>
+                    </form>
+                    
+                    <form id="LoginForm" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <input type="text" name="username"required placeholder="Username">
+                        <input type="password" name="password" required placeholder="Password">
+                        <button type="submit" name="login" class="btn">Login</button>
+                        <a href="">Forget Password</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
