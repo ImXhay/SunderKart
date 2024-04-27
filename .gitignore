@@ -10,11 +10,10 @@ db.sqlite3
 media/
 
 # Static files (usually collected separately for deployment) #
-staticfiles/
+static/
 
 # Virtual environment #
-venv/
-Ecommerce/  # Ignore the ecommerce directory
+Ecommerce/
 .env
 
 # IDE files #
